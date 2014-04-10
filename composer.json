@@ -1,0 +1,25 @@
+{
+    "name": "ballen/metar",
+    "version": "1.0.0",
+    "description": "A PHP library to query airport METAR information.",
+    "type": "library",
+    "keywords": ["METAR", "weather", "api", "pilots", "flightsim"],
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Bobby Allen",
+            "email": "ballen@bobbyallen.me",
+            "homepage": "http://bobbyallen.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ballen\\Metar\\": "lib/"
+        }
+    }
+}
