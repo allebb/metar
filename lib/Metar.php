@@ -3,14 +3,10 @@
 namespace Ballen\Metar;
 
 use GuzzleHttp\Client as HttpClient;
+use \Exception;
 
 class Metar
 {
-
-    /**
-     * Sets the METAR web service URL.
-     */
-    const WX_URL = 'http://metar.bobbyallen.me';
 
     /**
      * The date that the NOAA provide as the 'last updated' time.
@@ -25,7 +21,7 @@ class Metar
     private $metar;
 
     /**
-     * 
+     * Gather METAR infomation for a given ICAO code.
      * @param string $icao Four-digital ICAO airport code.
      * @throws \InvalidArgumentException
      */
@@ -35,23 +31,22 @@ class Metar
         // We force the format of the ICAO code to be upper case!
         $icao = strtoupper($icao);
 
-        // Validate the ICAO code!
+        // Validate the ICAO code, just check some standard formatting stuff really!
         $this->validateIcao($icao);
 
         $client = new HttpClient();
-
-        $response = $client->get('http://weather.noaa.gov/pub/data/observations/metar/stations/' . $icao . '.TXT');
-
         try {
+            $response = $client->get('http://weather.noaa.gov/pub/data/observations/metar/stations/' . $icao . '.TXT');
             if ($response->getStatusCode() != 200) {
-                throw new \Exception('An error occured when attempting to access the remote webservice, please try again shortly!');
+                throw new Exception('An error occured when attempting to access the remote webservice, please try again shortly!');
             }
         } catch (Exception $ex) {
-            die($ex);
+            die('An exception was caught: ' . $ex->getMessage());
         }
 
         // The NOAA API provides date infomation too, we don't want this as part of the RAW meta string so'll we'll split this up!
-        $lines = explode($icao, $response->getBody()); // Quick way
+        $lines = explode($icao, $response->getBody());
+        //
         // Store the published date.
         $this->publishDate = $lines[0];
 

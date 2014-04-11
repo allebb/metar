@@ -1,9 +1,9 @@
 Metar
 =====
 
-A PHP library to query airport METAR information, the library can query both VATSIM (for flight simulator users) as well as real-world METAR data direct from the National Oceanic and Atmospheric Administration (NOAA) aka. US National Weather service.
+A PHP library to query airport METAR information, the library queries real-world METAR data direct from the National Oceanic and Atmospheric Administration (NOAA) aka. US National Weather service.
 
-    As far as I am aware VATSIM also utilises real-world METAR data too but I'd recommend switching the 'service provider' to NOAA just incase!!
+> As far as I am aware VATSIM also utilises real-world METAR data too but I'd recommend switching the 'service provider' to NOAA just incase!!
 
 Requirements
 ------------
@@ -26,16 +26,8 @@ use Ballen\Metar;
 $departureMetar = new Metar('EGSS'); // Request METAR object for London Stansted (EGSS)
 $arrivalMetar = new Metar('LEIB'); // Request METAR object for Ibiza (LEIB)
 
-// We can then get the standard string like so:-
-
+// We can then get the standard METAR string like so:-
 echo $departureMetar;
-
-// Or we can get 'decoded' information like so:-
-echo $departureMetar->ICAO; // Returns the airport ICAO code (in this case 'EGSS')
-echo $departureMetar->date;
-echo $departureMetar->time;
-echo $departureMetar->temp;
-echo $departureMetar->dewPoint;
 ```
 
 Support
