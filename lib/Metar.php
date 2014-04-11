@@ -46,13 +46,13 @@ class Metar
 
         // The NOAA API provides date infomation too, we don't want this as part of the RAW meta string so'll we'll split this up!
         $lines = explode($icao, $response->getBody());
-        //
+
         // Store the published date.
-        $this->publishDate = $lines[0];
+        $this->publishDate = trim($lines[0]);
 
         // Store the raw METAR string.
         $metar_string = $icao . ' ' . $lines[1];
-        $this->metar = $metar_string;
+        $this->metar = trim($metar_string);
     }
 
     /**
