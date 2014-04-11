@@ -51,7 +51,7 @@ class Metar
         $this->publishDate = trim($lines[0]);
 
         // Store the raw METAR string.
-        $metar_string = $icao . ' ' . $lines[1];
+        $metar_string = $icao . $lines[1];
         $this->metar = trim($metar_string);
     }
 
