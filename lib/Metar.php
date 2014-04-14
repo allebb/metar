@@ -2,6 +2,19 @@
 
 namespace Ballen\Metar;
 
+/**
+ * Metar
+ *
+ * Metar is a PHP 5.4+ library for retrieveing weather reports (METAR infomation),
+ * the library supports multiple 'METAR prodivers' including NOAA and VATSIM.
+ *
+ * @author Bobby Allen <ballen@bobbyallen.me>
+ * @version 1.0.0
+ * @license http://www.gnu.org/licenses/gpl-3.0.html
+ * @link https://github.com/bobsta63/metar
+ * @link http://www.bobbyallen.me
+ *
+ */
 class Metar
 {
 
@@ -11,10 +24,10 @@ class Metar
     const SERVICES_NAMESPACE = 'Ballen\Metar\Providers';
 
     /**
-     * The METAR service of which to use to provide the METAR report.
-     * @var string
+     * Stores the requested airfield/port ICAO code.
+     * @var string ICAO code.
      */
-    private $metarProvider;
+    private $icao;
 
     /**
      * The METAR string retrieved from the web service.
@@ -23,32 +36,38 @@ class Metar
     private $metar;
 
     /**
-     * Gather METAR infomation for a given ICAO code.
-     * @param string $icao Four-digital ICAO airport code.
-     * @throws \InvalidArgumentException
+     * The METAR service of which to use to provide the METAR report.
+     * @var string METAR data provider class/file name.
+     */
+    private $metarProvider;
+
+    /**
+     * Initiates a new METAR object.
+     * @param string $icao The airfeild/airport ICAO code.
      */
     public function __construct($icao)
     {
 
         // We force the format of the ICAO code to be upper case!
-        $icao = strtoupper($icao);
+        $this->icao = strtoupper($icao);
 
         // Validate the ICAO code, just check some standard formatting stuff really!
-        $this->validateIcao($icao);
+        $this->validateIcao($this->icao);
 
         // Set a default provider, can be overrideen with 'setProvider()' function.
         $this->setProvider('NOAA');
-
-        $this->metar = (new $this->metarProvider($icao))->getMetarDataString();
     }
 
     /**
-     * Returns the string METAR message.
+     * Returns the RAW METAR message as a string.
      * @return string The RAW METAR message.
      */
     public function __toString()
     {
-        return $this->metar;
+        // We'll set the object 'metar' property to the station metar data as well as return the string so
+        // that in future we can extend further and use the METAR string in other parts of our class after it has
+        // been retrieved!
+        return $this->metar = (string) new $this->metarProvider($this->icao);
     }
 
     /**
@@ -64,8 +83,8 @@ class Metar
     }
 
     /**
-     * 
-     * @param type $provider
+     * Changes the default 'NOAA' METAR service provider to another one eg. 'VATSIM'.
+     * @param string $provider METAR Provider Class/File name.
      */
     public function setProvider($provider = 'Noaa')
     {

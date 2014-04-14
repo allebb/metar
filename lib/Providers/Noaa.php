@@ -2,6 +2,19 @@
 
 namespace Ballen\Metar\Providers;
 
+/**
+ * Metar
+ *
+ * Metar is a PHP 5.4+ library for retrieveing weather reports (METAR infomation),
+ * the library supports multiple 'METAR prodivers' including NOAA and VATSIM.
+ *
+ * @author Bobby Allen <ballen@bobbyallen.me>
+ * @version 1.0.0
+ * @license http://www.gnu.org/licenses/gpl-3.0.html
+ * @link https://github.com/bobsta63/metar
+ * @link http://www.bobbyallen.me
+ *
+ */
 use \Ballen\Metar\Providers\MetarProviderInterface;
 use \Ballen\Metar\Helpers\MetarHTTPClient;
 
@@ -9,7 +22,6 @@ use \Ballen\Metar\Helpers\MetarHTTPClient;
  * METAR service provided by the US NOAA (National Oceanic and Atmospheric Administration)
  * @link http://www.noaa.gov/
  */
-
 class Noaa extends MetarHTTPClient implements MetarProviderInterface
 {
 
@@ -21,16 +33,21 @@ class Noaa extends MetarHTTPClient implements MetarProviderInterface
         $this->icao = $icao;
     }
 
-    public function getMetarDataString()
+    private function getMetarDataString()
     {
-        
+
         $data = $this->getMetarAPIResponse(str_replace('{{_ICAO_}}', $this->icao, $this->serviceUrl));
 
         // The NOAA web service provides a human readable timestamp of when the report was last generated but we don't care about that so we'll jump to the next line (the actual METAR string)
         $lines = explode($this->icao, $data);
         $data = trim($this->icao . $lines[1]);
-        
+
         return $data;
+    }
+
+    public function __toString()
+    {
+        return $this->getMetarDataString();
     }
 
 }
