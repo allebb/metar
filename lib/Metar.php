@@ -2,11 +2,23 @@
 
 namespace Ballen\Metar;
 
-use GuzzleHttp\Client as HttpClient;
-use \Exception;
-
 class Metar
 {
+
+    /**
+     * Array of avaliable METAR service URLs
+     * @var type 
+     */
+    private $metarServices = [
+        'NOAA' => 'Ballen\Metar\Providers\Noaa',
+        'VATSIM' => 'Ballen\Metar\Providers\Vatsim',
+    ];
+
+    /**
+     * The METAR service of which to use to provide the METAR report.
+     * @var string
+     */
+    private $metarProvider = 'NOAA';
 
     /**
      * The date that the NOAA provide as the 'last updated' time.
@@ -34,25 +46,10 @@ class Metar
         // Validate the ICAO code, just check some standard formatting stuff really!
         $this->validateIcao($icao);
 
-        $client = new HttpClient();
-        try {
-            $response = $client->get('http://weather.noaa.gov/pub/data/observations/metar/stations/' . $icao . '.TXT');
-            if ($response->getStatusCode() != 200) {
-                throw new Exception('An error occured when attempting to access the remote webservice, please try again shortly!');
-            }
-        } catch (Exception $ex) {
-            die('An exception was caught: ' . $ex->getMessage());
-        }
 
-        // The NOAA API provides date infomation too, we don't want this as part of the RAW meta string so'll we'll split this up!
-        $lines = explode($icao, $response->getBody());
 
-        // Store the published date.
-        $this->publishDate = trim($lines[0]);
-
-        // Store the raw METAR string.
-        $metar_string = $icao . $lines[1];
-        $this->metar = trim($metar_string);
+        $metar = new $this->metarServices[$this->metarProvider]($icao);
+        $this->metar = $metar->getMetarDataString();
     }
 
     /**
