@@ -6,25 +6,15 @@ class Metar
 {
 
     /**
-     * Array of avaliable METAR service URLs
-     * @var type 
+     * Stores the default namespace for loading new METAR providers from.
      */
-    private $metarServices = [
-        'NOAA' => 'Ballen\Metar\Providers\Noaa',
-        'VATSIM' => 'Ballen\Metar\Providers\Vatsim',
-    ];
+    const SERVICES_NAMESPACE = 'Ballen\Metar\Providers';
 
     /**
      * The METAR service of which to use to provide the METAR report.
      * @var string
      */
-    private $metarProvider = 'NOAA';
-
-    /**
-     * The date that the NOAA provide as the 'last updated' time.
-     * @var type 
-     */
-    private $publishDate;
+    private $metarProvider;
 
     /**
      * The METAR string retrieved from the web service.
@@ -46,10 +36,10 @@ class Metar
         // Validate the ICAO code, just check some standard formatting stuff really!
         $this->validateIcao($icao);
 
+        // Set a default provider, can be overrideen with 'setProvider()' function.
+        $this->setProvider('NOAA');
 
-
-        $metar = new $this->metarServices[$this->metarProvider]($icao);
-        $this->metar = $metar->getMetarDataString();
+        $this->metar = (new $this->metarProvider($icao))->getMetarDataString();
     }
 
     /**
@@ -74,12 +64,15 @@ class Metar
     }
 
     /**
-     * Returns the date of when the METAR infomation was last updated.
-     * @return string
+     * 
+     * @param type $provider
      */
-    public function getPublishedDate()
+    public function setProvider($provider = 'Noaa')
     {
-        return $this->publishDate;
+        if (!class_exists(self::SERVICES_NAMESPACE . '\\' . $provider)) {
+            throw new \InvalidArgumentException('The service provider your specified does not exist in the namespace \'' . self::SERVICES_NAMESPACE . '\'');
+        }
+        $this->metarProvider = self::SERVICES_NAMESPACE . '\\' . $provider;
     }
 
 }
