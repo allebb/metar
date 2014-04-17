@@ -55,7 +55,7 @@ class Metar
         $this->validateIcao($this->icao);
 
         // Set a default provider, can be overrideen with 'setProvider()' function.
-        $this->setProvider('NOAA');
+        $this->setProvider('Noaa');
     }
 
     /**
