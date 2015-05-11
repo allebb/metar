@@ -1,6 +1,4 @@
-<?php
-
-namespace Ballen\Metar\Helpers;
+<?php namespace Ballen\Metar\Helpers;
 
 use GuzzleHttp\Client as HttpClient;
 use \Exception;
@@ -21,5 +19,4 @@ class MetarHTTPClient
         }
         return $response->getBody();
     }
-
 }

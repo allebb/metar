@@ -1,6 +1,4 @@
-<?php
-
-namespace Ballen\Metar;
+<?php namespace Ballen\Metar;
 
 /**
  * Metar
@@ -93,5 +91,4 @@ class Metar
         }
         $this->metarProvider = self::SERVICES_NAMESPACE . '\\' . $provider;
     }
-
 }

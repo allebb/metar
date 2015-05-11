@@ -1,6 +1,4 @@
-<?php
-
-namespace Ballen\Metar\Providers;
+<?php namespace Ballen\Metar\Providers;
 
 /**
  * Metar
@@ -36,16 +34,11 @@ class Vatsim extends MetarHTTPClient implements MetarProviderInterface
     private function getMetarDataString()
     {
         $data = $this->getMetarAPIResponse(str_replace('{{_ICAO_}}', $this->icao, $this->serviceUrl));
-
-        // Lets clean up the data...
-        $data = trim($data);
-
-        return $data;
+        return trim($data);
     }
 
     public function __toString()
     {
         return $this->getMetarDataString();
     }
-
 }

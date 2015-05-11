@@ -1,6 +1,4 @@
-<?php
-
-namespace Ballen\Metar\Providers;
+<?php namespace Ballen\Metar\Providers;
 
 /**
  * Metar
@@ -40,14 +38,11 @@ class Noaa extends MetarHTTPClient implements MetarProviderInterface
 
         // The NOAA web service provides a human readable timestamp of when the report was last generated but we don't care about that so we'll jump to the next line (the actual METAR string)
         $lines = explode($this->icao, $data);
-        $data = trim($this->icao . $lines[1]);
-
-        return $data;
+        return trim($this->icao . $lines[1]);
     }
 
     public function __toString()
     {
         return $this->getMetarDataString();
     }
-
 }

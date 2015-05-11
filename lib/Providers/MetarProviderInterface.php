@@ -1,6 +1,4 @@
-<?php
-
-namespace Ballen\Metar\Providers;
+<?php namespace Ballen\Metar\Providers;
 
 /**
  * Metar
@@ -15,11 +13,10 @@ namespace Ballen\Metar\Providers;
  * @link http://www.bobbyallen.me
  *
  */
-
 interface MetarProviderInterface
 {
 
     function __construct($icao);
-    
+
     function __toString();
 }
