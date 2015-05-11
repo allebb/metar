@@ -2,4 +2,4 @@ filter:
     paths: [lib/*]
     excluded_paths: [examples/*]
 checks:
-    php
+    php: true
