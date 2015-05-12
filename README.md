@@ -26,17 +26,17 @@ Examples
 --------
 
 ```php
-
 use Ballen\Metar;
 
-// Requests the current METAR report for EGSS (London Stansted)
-$departureMetar = new Metar('EGSS'); // Example response: EGSS 111420Z 23014KT 9999 SCT037 21/12 Q1018
-
-// Requests the current METAR report for LEIB (Ibiza Airport)
-$arrivalMetar = new Metar('LEIB'); // Example response: LEIB 111430Z 06010KT CAVOK 23/16 Q1022 NOSIG
-
+// Requests the current METAR report for EGSS (London Stansted) using the default NOAA service.
+$egss = new Metar('EGSS'); 
 // We can then get the standard METAR string like so:-
-echo $departureMetar;
+echo "METAR report for EGSS (using NOAA): " .$egss; // Outputs: METAR report for EGSS (using NOAA): EGSS 111420Z 23014KT 9999 SCT037 21/12 Q1018
+
+// Requests the current METAR report for LEIB (Ibiza Airport) using VATSIM METAR servers instead.
+$leib = new Metar('LEIB'); 
+$leib->setProvider('VATSIM');
+echo "METAR report for LEIB (using VATSIM): " .$leib; // Outputs: METAR report for LEIB (using VATSIM): LEIB 111430Z 06010KT CAVOK 23/16 Q1022 NOSIG
 ```
 
 Support
