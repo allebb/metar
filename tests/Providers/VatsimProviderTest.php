@@ -1,6 +1,5 @@
 <?php
-
-namespace Ballen\Metar\Providers;
+use \PHPUnit_Framework_TestCase;
 
 /**
  * Metar
@@ -14,10 +13,7 @@ namespace Ballen\Metar\Providers;
  * @link http://www.bobbyallen.me
  *
  */
-interface MetarProviderInterface
+class NoaaProviderTest extends PHPUnit_Framework_TestCase
 {
-
-    function __construct($icao);
-
-    function __toString();
+    
 }
