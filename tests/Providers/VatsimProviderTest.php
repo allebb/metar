@@ -13,7 +13,7 @@ use \PHPUnit_Framework_TestCase;
  * @link http://www.bobbyallen.me
  *
  */
-class NoaaProviderTest extends PHPUnit_Framework_TestCase
+class VatsimProviderTest extends PHPUnit_Framework_TestCase
 {
     
 }
