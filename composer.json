@@ -1,9 +1,8 @@
 {
     "name": "ballen/metar",
-    "version": "1.0.0",
-    "description": "A PHP library to query airport METAR information.",
+    "description": "A PHP library to query aerodrome METAR information.",
     "type": "library",
-    "keywords": ["METAR", "weather", "api", "pilots", "flightsim"],
+    "keywords": ["METAR", "weather", "api", "pilots", "flightsim", "ICAO"],
     "license": "GPLv3",
     "authors": [
         {
@@ -14,8 +13,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "guzzlehttp/guzzle": "4.*"
+        "php": ">=5.5.0",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "autoload": {
         "psr-4": {
