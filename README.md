@@ -7,14 +7,14 @@ Metar
 [![Latest Unstable Version](https://poser.pugx.org/ballen/metar/v/unstable)](https://packagist.org/packages/ballen/metar)
 [![License](https://poser.pugx.org/ballen/metar/license)](https://packagist.org/packages/ballen/metar)
 
-A PHP library to query airport METAR information, the library queries real-world METAR data direct from the National Oceanic and Atmospheric Administration (NOAA) and optionally for VATSIM.
+A PHP library to query aerodrome METAR information, the library queries real-world METAR data direct from the National Oceanic and Atmospheric Administration (NOAA) and optionally for VATSIM.
 
 __The default provider that is configured by this library is NOAA, if you decide to change the provider to VATSIM you SHOULD NOT use it for real-world METAR reports.__
 
 Requirements
 ------------
 
-* PHP >= 5.4.x
+* PHP >= 5.5.0
 * cURL
 
 License
@@ -26,17 +26,21 @@ Examples
 --------
 
 ```php
-use Ballen\Metar;
+use Ballen\Metar\Metar;
 
-// Requests the current METAR report for EGSS (London Stansted) using the default NOAA service.
-$egss = new Metar('EGSS'); 
-// We can then get the standard METAR string like so:-
-echo "METAR report for EGSS (using NOAA): " .$egss; // Outputs: METAR report for EGSS (using NOAA): EGSS 111420Z 23014KT 9999 SCT037 21/12 Q1018
+/**
+ * Using the default options, the report will be retrieved from the NOAA web service.
+ */
+$egss = new Metar('EGSS');
+echo sprintf('The METAR report for Stansted (EGSS) is: %s', $egss);
 
-// Requests the current METAR report for LEIB (Ibiza Airport) using VATSIM METAR servers instead.
-$leib = new Metar('LEIB'); 
+/**
+ * Alternatively, Flight simulation enthusiasts may wish to retrieve the current VATSIM reports,
+ * this can be achieved by 
+ */
+$leib = new Metar('LEIB');
 $leib->setProvider('VATSIM');
-echo "METAR report for LEIB (using VATSIM): " .$leib; // Outputs: METAR report for LEIB (using VATSIM): LEIB 111430Z 06010KT CAVOK 23/16 Q1022 NOSIG
+echo sprintf('The VATSIM METAR report for Ibiza airport (LEIB) is: %s', $leib);
 ```
 
 Support
