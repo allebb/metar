@@ -26,7 +26,7 @@ class MetarHttpClientTest extends PHPUnit_Framework_TestCase
      * Example report data that we expect to recieve.
      */
     const EXAMPLE_METAR_REPORT = 'EGSS 272020Z AUTO 27009KT 240V310 9999 BKN044 08/04 Q1010';
-    
+
     /**
      * Example service URL
      */
@@ -43,10 +43,7 @@ class MetarHttpClientTest extends PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $mock = new MockHandler([
-            new Response(200, [], self::EXAMPLE_METAR_REPORT),
-        ]);
-        $this->handler = HandlerStack::create($mock);
+        
     }
 
     /**
@@ -54,7 +51,25 @@ class MetarHttpClientTest extends PHPUnit_Framework_TestCase
      */
     public function testDownloadReport()
     {
+        $mock = new MockHandler([
+            new Response(200, [], self::EXAMPLE_METAR_REPORT),
+        ]);
+        $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
         $this->assertEquals(self::EXAMPLE_METAR_REPORT, $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSS')));
+    }
+
+    /**
+     * Test recieving an invalid report.
+     */
+    public function testInvalidReport()
+    {
+        $mock = new MockHandler([
+            new Response(404),
+        ]);
+        $this->handler = HandlerStack::create($mock);
+        $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
+        $this->setExpectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response:');
+        $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSSA'));
     }
 }

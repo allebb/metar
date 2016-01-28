@@ -44,13 +44,9 @@ class MetarHTTPClient
     public function getMetarAPIResponse($url)
     {
         $client = new HttpClient($this->guzzle_conf);
-        try {
-            $response = $client->get($url);
-            if ($response->getStatusCode() != 200) {
-                throw new Exception('An error occured when attempting to access the remote webservice, please try again shortly!');
-            }
-        } catch (Exception $ex) {
-            die('An exception was caught: ' . $ex->getMessage('http://metar.vatsim.net/metar.php?id=EGSS'));
+        $response = $client->get($url);
+        if ($response->getStatusCode() != 200) {
+            throw new Exception('An error occured when attempting to access the remote webservice, please try again shortly!');
         }
         return $response->getBody();
     }
