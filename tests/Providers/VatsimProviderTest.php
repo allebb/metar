@@ -1,5 +1,6 @@
 <?php
 use \PHPUnit_Framework_TestCase;
+use Ballen\Metar\Providers\Noaa;
 
 /**
  * Metar

@@ -77,7 +77,7 @@ class Metar
     private function validateIcao($icao)
     {
         if (strlen($icao) != 4) {
-            throw new \InvalidArgumentException('ICAO code does not appear to be a valid format (for example \'EGSS\' for London Stansted!');
+            throw new \InvalidArgumentException('ICAO code does not appear to be a valid format');
         }
     }
 
