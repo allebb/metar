@@ -1,5 +1,4 @@
 <?php
-use \PHPUnit_Framework_TestCase;
 use Ballen\Metar\Metar;
 
 /**
@@ -14,7 +13,7 @@ use Ballen\Metar\Metar;
  * @link http://www.bobbyallen.me
  *
  */
-class MetarTest extends PHPUnit_Framework_TestCase
+class MetarTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testSetValidIcao()
@@ -35,7 +34,7 @@ class MetarTest extends PHPUnit_Framework_TestCase
     }
 
     public function testSetInvalidProvider()
-    {    
+    {
         $metar = new Metar('EGSS');
         $this->setExpectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'' . Metar::SERVICES_NAMESPACE . '\'');
         $metar->setProvider('An_Invalid_Provider');

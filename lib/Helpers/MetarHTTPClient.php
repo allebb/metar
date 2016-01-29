@@ -39,15 +39,11 @@ class MetarHTTPClient
      * Make a HTTP request and retrieve the body.
      * @param string $url The URL to request
      * @return string
-     * @throws Exception
      */
     public function getMetarAPIResponse($url)
     {
         $client = new HttpClient($this->guzzle_conf);
         $response = $client->get($url);
-        if ($response->getStatusCode() != 200) {
-            throw new Exception('An error occured when attempting to access the remote webservice, please try again shortly!');
-        }
         return $response->getBody();
     }
 }
