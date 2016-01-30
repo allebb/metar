@@ -16,23 +16,35 @@ use Ballen\Metar\Metar;
 class MetarTest extends \PHPUnit_Framework_TestCase
 {
 
+    /**
+     * Test requesting of a valid ICAO code (does not thrown an invalid formation exception)
+     */
     public function testSetValidIcao()
     {
         $metar = new Metar('EGSS');
     }
 
+    /**
+     * Tests requesting an invalid ICAO code (throws correct exception)
+     */
     public function testSetInvalidIcao()
     {
         $this->setExpectedException('InvalidArgumentException', 'ICAO code does not appear to be a valid format');
         $metar = new Metar('EGSSA');
     }
 
+    /**
+     * Tests settings a valid METAR provider service (Provider class exists)
+     */
     public function testSetValidProvider()
     {
         $metar = new Metar('EGSS');
         $metar->setProvider('Noaa');
     }
 
+    /**
+     * Tests setting an invalud provider service (The provider class does not exist)
+     */
     public function testSetInvalidProvider()
     {
         $metar = new Metar('EGSS');
@@ -40,13 +52,19 @@ class MetarTest extends \PHPUnit_Framework_TestCase
         $metar->setProvider('An_Invalid_Provider');
     }
 
+    /**
+     * Test requesting a METAR report using the default NOAA provider.
+     */
     public function testValidNoaaMetarResponse()
     {
         $metar = new Metar('EGSS');
         $check_valid_metar = strpos($metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }
-    
+
+    /**
+     * Test requesting a METAR report using VATSIM as the provider.
+     */
     public function testValidVatsimMetarResponse()
     {
         $metar = new Metar('EGSS');
