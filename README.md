@@ -2,6 +2,7 @@ Metar
 =====
 
 [![Build Status](https://scrutinizer-ci.com/g/bobsta63/metar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bobsta63/metar/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/bobsta63/metar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/bobsta63/metar/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobsta63/metar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bobsta63/metar/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/ballen/metar/v/stable)](https://packagist.org/packages/ballen/metar)
 [![Latest Unstable Version](https://poser.pugx.org/ballen/metar/v/unstable)](https://packagist.org/packages/ballen/metar)
@@ -17,13 +18,31 @@ Requirements
 * PHP >= 5.5.0
 * cURL
 
+This library is unit tested against PHP 5.5, 5.6, 7.0 and HHVM!
+
 License
 -------
 
 This client library is released under the [GPLv3](https://raw.githubusercontent.com/bobsta63/metar/master/LICENSE) license, you are welcome to use it, improve it and contribute your changes back!
 
-Examples
---------
+Installation
+------------
+
+The recommended way of installing this library is via. [Composer](http://getcomposer.org); To install using Composer type the following command at the console:
+
+```shell
+composer require ballen/metar
+```
+
+Alternately you can add it to your ``composer.json`` file manually in the `require` section like so:
+
+```php
+"ballen/metar": "^2.0"
+```
+Then install the package by running the ``composer update ballen/metar`` command.
+
+Example usage
+-------------
 
 ```php
 use Ballen\Metar\Metar;
@@ -43,7 +62,31 @@ $leib->setProvider('VATSIM');
 echo sprintf('The VATSIM METAR report for Ibiza airport (LEIB) is: %s', $leib);
 ```
 
+Tests and coverage
+------------------
+
+This library is fully unit tested using [PHPUnit](https://phpunit.de/).
+
+I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 5.5, 5.6, 7.0 and HHVM every time a commit is pushed.
+
+If you wish to run the tests yourself you should run the following:
+
+```shell
+# Install the Metar Library with the 'development' packages this then includes PHPUnit!
+composer install --dev
+
+
+# Now we run the unit tests (from the root of the project) like so:
+./vendor/bin/phpunit
+```
+
+Code coverage can also be ran and a report generated (this does require XDebug to be installed)...
+
+```shell
+./vendor/bin/phpunit --coverage-html ./report
+```
+
 Support
 -------
 
-I am happy to provide support via. my personal email address, so if you need a hand drop me an email at: [ballen@bobbyallen.me](mailto:ballen@bobbyallen.me).
+I am happy to provide support via. my personal email address, so if you need a hand drop me an email at: [ballen@bobbyallen.me]().
