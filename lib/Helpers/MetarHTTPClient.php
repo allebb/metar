@@ -42,7 +42,11 @@ class MetarHTTPClient
      */
     public function getMetarAPIResponse($url)
     {
-        $client = new HttpClient($this->guzzle_conf);
+        if ($this->guzzle_conf) {
+            $client = new HttpClient($this->guzzle_conf);
+        } else {
+            $client = new HttpClient();
+        }
         $response = $client->get($url);
         return $response->getBody();
     }

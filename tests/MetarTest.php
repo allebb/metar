@@ -39,4 +39,19 @@ class MetarTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'' . Metar::SERVICES_NAMESPACE . '\'');
         $metar->setProvider('An_Invalid_Provider');
     }
+
+    public function testValidNoaaMetarResponse()
+    {
+        $metar = new Metar('EGSS');
+        $check_valid_metar = strpos($metar, 'EGSS');
+        $this->assertEquals($check_valid_metar, 0);
+    }
+    
+    public function testValidVatsimMetarResponse()
+    {
+        $metar = new Metar('EGSS');
+        $metar->setProvider('Vatsim');
+        $check_valid_metar = strpos($metar, 'EGSS');
+        $this->assertEquals($check_valid_metar, 0);
+    }
 }

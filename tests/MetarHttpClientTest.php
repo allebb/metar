@@ -79,7 +79,7 @@ class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
-        $this->setExpectedException('Exception', 'Server error: `GET http://metar.vatsim.net/metar.php?id=EGSS` resulted in a `502 Bad Gateway` respsone:');
+        $this->setExpectedException('Exception', 'Server error: `GET http://metar.vatsim.net/metar.php?id=EGSS` resulted in a `502 Bad Gateway`');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSS'));
     }
 }
