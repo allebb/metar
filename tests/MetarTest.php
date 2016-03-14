@@ -72,4 +72,15 @@ class MetarTest extends \PHPUnit_Framework_TestCase
         $check_valid_metar = strpos($metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }
+    
+    /**
+     * Test requesting a METAR report using IVAO as the provider.
+     */
+    public function testValidIvaoMetarResponse()
+    {
+        $metar = new Metar('EGSS');
+        $metar->setProvider('Ivao');
+        $check_valid_metar = strpos($metar, 'EGSS');
+        $this->assertEquals($check_valid_metar, 0);
+    }
 }
