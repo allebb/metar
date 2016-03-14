@@ -35,14 +35,6 @@ class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
     private $handler;
 
     /**
-     * Setup the testcase
-     */
-    public function setUp()
-    {
-        
-    }
-
-    /**
      * Test recieving a METAR report.
      */
     public function testDownloadReport()

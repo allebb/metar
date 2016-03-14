@@ -57,14 +57,13 @@ echo sprintf('The METAR report for Stansted (EGSS) is: %s', $egss);
  * Alternatively, Flight simulation enthusiasts may wish to retrieve the current VATSIM reports,
  * this can be achieved by changing the default provider like so: 
  */
-$leib->setProvider('VATSIM');
+$leib->setProvider(Ballen\Metar\Providers\Vatsim::class);
 
 /**
-* Since version 2.0.1, users can now query the IVAO web service for METARs too by using the 'Ivao' provider method like so:
+* Since version 2.1.0, users can now query the IVAO web service for METARs too by using the 'IVAO' provider method like so:
 */
-$leib->setProvider('IVAO');
+$leib->setProvider(Ballen\Metar\Providers\Ivao::class);
 ```
-
 
 Tests and coverage
 ------------------
@@ -76,9 +75,8 @@ I use [TravisCI](https://travis-ci.org/) for continuous integration, which trigg
 If you wish to run the tests yourself you should run the following:
 
 ```shell
-# Install the Metar Library with the 'development' packages this then includes PHPUnit!
-composer install --dev
-
+# Install the Metar Library (which will include PHPUnit as part of the require-dev dependencies)
+composer install
 
 # Now we run the unit tests (from the root of the project) like so:
 ./vendor/bin/phpunit

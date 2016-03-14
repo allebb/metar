@@ -20,7 +20,7 @@ class Metar
     /**
      * Stores the default namespace for loading new METAR providers from.
      */
-    const SERVICES_NAMESPACE = 'Ballen\Metar\Providers';
+    const DEFAULT_PROVIDER = 'Ballen\Metar\Providers\Noaa';
 
     /**
      * Stores the requested airfield/port ICAO code.
@@ -54,7 +54,7 @@ class Metar
         $this->validateIcao($this->icao);
 
         // Set a default provider, can be overrideen with 'setProvider()' function.
-        $this->setProvider('Noaa');
+        $this->setProvider();
     }
 
     /**
@@ -85,11 +85,11 @@ class Metar
      * Changes the default 'NOAA' METAR service provider to another one eg. 'VATSIM'.
      * @param string $provider METAR Provider Class/File name.
      */
-    public function setProvider($provider = 'Noaa')
+    public function setProvider($provider = self::DEFAULT_PROVIDER)
     {
-        if (!class_exists(self::SERVICES_NAMESPACE . '\\' . $provider)) {
-            throw new \InvalidArgumentException('The service provider your specified does not exist in the namespace \'' . self::SERVICES_NAMESPACE . '\'');
+        if (!class_exists($provider)) {
+            throw new \InvalidArgumentException('The service provider your specified does not exist in the namespace \'' . $provider . '\'');
         }
-        $this->metarProvider = self::SERVICES_NAMESPACE . '\\' . $provider;
+        $this->metarProvider = $provider;
     }
 }

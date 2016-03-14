@@ -39,7 +39,7 @@ class MetarTest extends \PHPUnit_Framework_TestCase
     public function testSetValidProvider()
     {
         $metar = new Metar('EGSS');
-        $metar->setProvider('Noaa');
+        $metar->setProvider(\Ballen\Metar\Providers\Noaa::class);
     }
 
     /**
@@ -48,7 +48,7 @@ class MetarTest extends \PHPUnit_Framework_TestCase
     public function testSetInvalidProvider()
     {
         $metar = new Metar('EGSS');
-        $this->setExpectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'' . Metar::SERVICES_NAMESPACE . '\'');
+        $this->setExpectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
         $metar->setProvider('An_Invalid_Provider');
     }
 
@@ -68,18 +68,18 @@ class MetarTest extends \PHPUnit_Framework_TestCase
     public function testValidVatsimMetarResponse()
     {
         $metar = new Metar('EGSS');
-        $metar->setProvider('Vatsim');
+        $metar->setProvider(Ballen\Metar\Providers\Vatsim::class);
         $check_valid_metar = strpos($metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }
-    
+
     /**
      * Test requesting a METAR report using IVAO as the provider.
      */
     public function testValidIvaoMetarResponse()
     {
         $metar = new Metar('EGSS');
-        $metar->setProvider('IVAO');
+        $metar->setProvider(Ballen\Metar\Providers\Ivao::class);
         $check_valid_metar = strpos($metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }

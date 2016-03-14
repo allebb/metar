@@ -2,7 +2,7 @@
     "name": "ballen/metar",
     "description": "A PHP library to query aerodrome METAR information.",
     "type": "library",
-    "keywords": ["METAR", "weather", "api", "pilots", "flightsim", "ICAO"],
+    "keywords": ["METAR", "weather", "api", "pilots", "flightsim", "ICAO", "ivao", "noaa", "vatsim"],
     "license": "GPLv3",
     "authors": [
         {
