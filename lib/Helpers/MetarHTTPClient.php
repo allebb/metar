@@ -38,7 +38,7 @@ class MetarHTTPClient
     /**
      * Make a HTTP request and retrieve the body.
      * @param string $url The URL to request
-     * @return string
+     * @return \Psr\Http\Message\StreamInterface
      */
     public function getMetarAPIResponse($url)
     {
