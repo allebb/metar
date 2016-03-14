@@ -8,9 +8,9 @@ Metar
 [![Latest Unstable Version](https://poser.pugx.org/ballen/metar/v/unstable)](https://packagist.org/packages/ballen/metar)
 [![License](https://poser.pugx.org/ballen/metar/license)](https://packagist.org/packages/ballen/metar)
 
-A PHP library to query aerodrome METAR information, the library queries real-world METAR data direct from the National Oceanic and Atmospheric Administration (NOAA) and optionally for VATSIM.
+A PHP library to query aerodrome METAR information, the library queries real-world METAR data direct from the National Oceanic and Atmospheric Administration (NOAA) and optionally for VATSIM or IVAO.
 
-__The default provider that is configured by this library is NOAA, if you decide to change the provider to VATSIM you SHOULD NOT use it for real-world METAR reports.__
+__The default provider that is configured by this library is NOAA, if you decide to change the provider to VATSIM or IVAO you SHOULD NOT use it for real-world METAR reports.__
 
 Requirements
 ------------
@@ -55,12 +55,16 @@ echo sprintf('The METAR report for Stansted (EGSS) is: %s', $egss);
 
 /**
  * Alternatively, Flight simulation enthusiasts may wish to retrieve the current VATSIM reports,
- * this can be achieved by 
+ * this can be achieved by changing the default provider like so: 
  */
-$leib = new Metar('LEIB');
 $leib->setProvider('VATSIM');
-echo sprintf('The VATSIM METAR report for Ibiza airport (LEIB) is: %s', $leib);
+
+/**
+* Since version 2.0.1, users can now query the IVAO web service for METARs too by using the 'Ivao' provider method like so:
+*/
+$leib->setProvider('IVAO');
 ```
+
 
 Tests and coverage
 ------------------

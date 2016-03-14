@@ -5,7 +5,7 @@ use Ballen\Metar\Metar;
  * Metar
  *
  * Metar is a PHP library for retrieveing weather reports (METAR infomation),
- * the library supports multiple 'METAR prodivers' including NOAA and VATSIM.
+ * the library supports multiple 'METAR prodivers' including NOAA, VATSIM and IVAO.
  *
  * @author Bobby Allen <ballen@bobbyallen.me>
  * @license http://www.gnu.org/licenses/gpl-3.0.html
@@ -79,7 +79,7 @@ class MetarTest extends \PHPUnit_Framework_TestCase
     public function testValidIvaoMetarResponse()
     {
         $metar = new Metar('EGSS');
-        $metar->setProvider('Ivao');
+        $metar->setProvider('IVAO');
         $check_valid_metar = strpos($metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }

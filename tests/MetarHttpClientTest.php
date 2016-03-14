@@ -7,7 +7,7 @@ use GuzzleHttp\Psr7\Response;
  * Metar
  *
  * Metar is a PHP library for retrieveing weather reports (METAR infomation),
- * the library supports multiple 'METAR prodivers' including NOAA and VATSIM.
+ * the library supports multiple 'METAR prodivers' including NOAA, VATSIM and IVAO.
  *
  * @author Bobby Allen <ballen@bobbyallen.me>
  * @license http://www.gnu.org/licenses/gpl-3.0.html
@@ -68,7 +68,7 @@ class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response:');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSSA'));
     }
-    
+
     /**
      * Test recieving an unprocessable response (eg. a 502 response).
      */
