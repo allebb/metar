@@ -1,5 +1,4 @@
 <?php
-
 namespace Ballen\Metar\Providers;
 
 /**
@@ -14,7 +13,6 @@ namespace Ballen\Metar\Providers;
  * @link http://www.bobbyallen.me
  *
  */
-use \Ballen\Metar\Providers\MetarProviderInterface;
 use \Ballen\Metar\Helpers\MetarHTTPClient;
 
 /**

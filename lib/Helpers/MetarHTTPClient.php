@@ -1,5 +1,4 @@
 <?php
-
 namespace Ballen\Metar\Helpers;
 
 use GuzzleHttp\Client as HttpClient;

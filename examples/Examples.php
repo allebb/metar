@@ -14,6 +14,6 @@ echo sprintf('The METAR report for Stanstead (EGSS) is: %s', $egss);
  * this can be achieved by 
  */
 $leib = new Metar('LEIB');
-$leib->setProvider('VATSIM');
+$leib->setProvider(Ballen\Metar\Providers\Vatsim::class);
 echo sprintf('The VATSIM METAR report for Ibiza airport (LEIB) is: %s', $leib);
 

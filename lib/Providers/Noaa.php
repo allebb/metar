@@ -1,5 +1,4 @@
 <?php
-
 namespace Ballen\Metar\Providers;
 
 /**
@@ -14,7 +13,6 @@ namespace Ballen\Metar\Providers;
  * @link http://www.bobbyallen.me
  *
  */
-use \Ballen\Metar\Providers\MetarProviderInterface;
 use \Ballen\Metar\Helpers\MetarHTTPClient;
 
 /**
@@ -24,7 +22,7 @@ use \Ballen\Metar\Helpers\MetarHTTPClient;
 class Noaa extends MetarHTTPClient implements MetarProviderInterface
 {
 
-    private $serviceUrl = 'http://weather.noaa.gov/pub/data/observations/metar/stations/{{_ICAO_}}.TXT';
+    private $serviceUrl = 'http://tgftp.nws.noaa.gov/data/observations/metar/stations/{{_ICAO_}}.TXT';
     private $icao;
 
     public function __construct($icao)
