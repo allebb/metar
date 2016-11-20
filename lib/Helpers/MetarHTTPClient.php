@@ -23,7 +23,7 @@ class MetarHTTPClient
      * Optional Guzzle Client configuration.
      * @var array
      */
-    protected $guzzle_conf;
+    protected $guzzleConf = [];
 
     /**
      * HTTP Client
@@ -31,7 +31,7 @@ class MetarHTTPClient
      */
     public function __construct($config = [])
     {
-        $this->guzzle_conf = $config;
+        $this->guzzleConf = $config;
     }
 
     /**
@@ -41,11 +41,7 @@ class MetarHTTPClient
      */
     public function getMetarAPIResponse($url)
     {
-        if (!empty($this->guzzle_conf)) {
-            $client = new HttpClient($this->guzzle_conf);
-        } else {
-            $client = new HttpClient();
-        }
+        $client = new HttpClient($this->guzzleConf);
         $response = $client->get($url);
         return $response->getBody()
                 ->getContents();
