@@ -1,10 +1,10 @@
 Metar
 =====
 
-[![Build Status](https://scrutinizer-ci.com/g/bobsta63/metar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bobsta63/metar/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/bobsta63/metar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/bobsta63/metar/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bobsta63/metar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bobsta63/metar/?branch=master)
-[![Code Climate](https://codeclimate.com/github/bobsta63/metar/badges/gpa.svg)](https://codeclimate.com/github/bobsta63/metar)
+[![Build Status](https://scrutinizer-ci.com/g/allebb/metar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/allebb/metar/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/allebb/metar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/allebb/metar/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/allebb/metar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/allebb/metar/?branch=master)
+[![Code Climate](https://codeclimate.com/github/allebb/metar/badges/gpa.svg)](https://codeclimate.com/github/allebb/metar)
 [![Latest Stable Version](https://poser.pugx.org/ballen/metar/v/stable)](https://packagist.org/packages/ballen/metar)
 [![Latest Unstable Version](https://poser.pugx.org/ballen/metar/v/unstable)](https://packagist.org/packages/ballen/metar)
 [![License](https://poser.pugx.org/ballen/metar/license)](https://packagist.org/packages/ballen/metar)
@@ -24,7 +24,7 @@ This library is unit tested against PHP 5.5, 5.6, 7.0 and HHVM!
 License
 -------
 
-This client library is released under the [GPLv3](https://raw.githubusercontent.com/bobsta63/metar/master/LICENSE) license, you are welcome to use it, improve it and contribute your changes back!
+This client library is released under the [GPLv3](https://raw.githubusercontent.com/allebb/metar/master/LICENSE) license, you are welcome to use it, improve it and contribute your changes back!
 
 Installation
 ------------
