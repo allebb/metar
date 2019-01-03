@@ -19,7 +19,7 @@ Requirements
 * PHP >= 5.5.0
 * cURL
 
-This library is unit tested against PHP 5.5, 5.6, 7.0 and HHVM!
+This library is unit tested against PHP 5.5, 5.6, 7.0, 7.1, 7.2, 7.3 and the PHP nightly build!
 
 License
 -------
@@ -71,7 +71,7 @@ Tests and coverage
 
 This library is fully unit tested using [PHPUnit](https://phpunit.de/).
 
-I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 5.5, 5.6, 7.0 and HHVM every time a commit is pushed.
+I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 5.5, 5.6, 7.0, 7.1, 7.2, 7.3 and the PHP nightly build every time a commit is pushed.
 
 If you wish to run the tests yourself you should run the following:
 
