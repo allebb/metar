@@ -57,7 +57,7 @@ class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
-        $this->setExpectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response:');
+        $this->setExpectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSSA'));
     }
 
