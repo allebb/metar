@@ -16,10 +16,10 @@ __The default provider that is configured by this library is NOAA, if you decide
 Requirements
 ------------
 
-* PHP >= 5.5.0
+* PHP >= 7.3.0
 * cURL
 
-This library is unit tested against PHP 5.6, 7.0, 7.1, 7.2, 7.3 and 7.4 build!
+This library is unit tested against PHP 7.3, 7.4 and 8.0!
 
 License
 -------
@@ -34,13 +34,6 @@ The recommended way of installing this library is via. [Composer](http://getcomp
 ```shell
 composer require ballen/metar
 ```
-
-Alternately you can add it to your ``composer.json`` file manually in the `require` section like so:
-
-```php
-"ballen/metar": "^2.0"
-```
-Then install the package by running the ``composer update ballen/metar`` command.
 
 Example usage
 -------------
@@ -58,12 +51,12 @@ echo sprintf('The METAR report for Stansted (EGSS) is: %s', $egss);
  * Alternatively, Flight simulation enthusiasts may wish to retrieve the current VATSIM reports,
  * this can be achieved by changing the default provider like so: 
  */
-$leib->setProvider(Ballen\Metar\Providers\Vatsim::class);
+$egss->setProvider(Ballen\Metar\Providers\Vatsim::class);
 
 /**
 * Since version 2.1.0, users can now query the IVAO web service for METARs too by using the 'IVAO' provider method like so:
 */
-$leib->setProvider(Ballen\Metar\Providers\Ivao::class);
+$egss->setProvider(Ballen\Metar\Providers\Ivao::class);
 ```
 
 Tests and coverage
@@ -71,7 +64,7 @@ Tests and coverage
 
 This library is fully unit tested using [PHPUnit](https://phpunit.de/).
 
-I use [TravisCI](https://travis-ci.org/) for continuous integration, which triggers tests for PHP 5.6, 7.0, 7.1, 7.2, 7.3 and 7.4 every time a commit is pushed.
+I use [GitHub Actions](https://github.com/) for continuous integration, which triggers tests for PHP 7.3, 7.4 and 8.0 every time a commit is pushed.
 
 If you wish to run the tests yourself you should run the following:
 
