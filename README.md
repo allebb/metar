@@ -1,8 +1,8 @@
 Metar
 =====
 
-[![Build Status](https://scrutinizer-ci.com/g/allebb/metar/badges/build.png?b=master)](https://scrutinizer-ci.com/g/allebb/metar/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/allebb/metar/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/allebb/metar/?branch=master)
+[![Build](https://github.com/allebb/metar/workflows/build/badge.svg)](https://github.com/allebb/metar/actions)
+[![Code Coverage](https://codecov.io/gh/allebb/metar/branch/master/graph/badge.svg)](https://codecov.io/gh/allebb/metar)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/allebb/metar/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/allebb/metar/?branch=master)
 [![Code Climate](https://codeclimate.com/github/allebb/metar/badges/gpa.svg)](https://codeclimate.com/github/allebb/metar)
 [![Latest Stable Version](https://poser.pugx.org/ballen/metar/v/stable)](https://packagist.org/packages/ballen/metar)
