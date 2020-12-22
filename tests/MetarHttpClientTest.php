@@ -2,6 +2,7 @@
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Metar
@@ -11,11 +12,11 @@ use GuzzleHttp\Psr7\Response;
  *
  * @author Bobby Allen <ballen@bobbyallen.me>
  * @license http://www.gnu.org/licenses/gpl-3.0.html
- * @link https://github.com/bobsta63/metar
+ * @link https://github.com/allebb/metar
  * @link http://www.bobbyallen.me
  *
  */
-class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
+class MetarHttpClientTest extends TestCase
 {
 
     /**
@@ -57,7 +58,7 @@ class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
-        $this->setExpectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response');
+        $this->expectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSSA'));
     }
 
@@ -71,7 +72,7 @@ class MetarHttpClientTest extends \PHPUnit_Framework_TestCase
         ]);
         $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
-        $this->setExpectedException('Exception', 'Server error: `GET http://metar.vatsim.net/metar.php?id=EGSS` resulted in a `502 Bad Gateway`');
+        $this->expectedException('Exception', 'Server error: `GET http://metar.vatsim.net/metar.php?id=EGSS` resulted in a `502 Bad Gateway`');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSS'));
     }
 }

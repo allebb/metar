@@ -1,5 +1,6 @@
 <?php
 use Ballen\Metar\Metar;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Metar
@@ -9,11 +10,11 @@ use Ballen\Metar\Metar;
  *
  * @author Bobby Allen <ballen@bobbyallen.me>
  * @license http://www.gnu.org/licenses/gpl-3.0.html
- * @link https://github.com/bobsta63/metar
+ * @link https://github.com/allebb/metar
  * @link http://www.bobbyallen.me
  *
  */
-class MetarTest extends \PHPUnit_Framework_TestCase
+class MetarTest extends TestCase
 {
 
     /**
@@ -29,7 +30,7 @@ class MetarTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetInvalidIcao()
     {
-        $this->setExpectedException('InvalidArgumentException', 'ICAO code does not appear to be a valid format');
+        $this->expectedException('InvalidArgumentException', 'ICAO code does not appear to be a valid format');
         $metar = new Metar('EGSSA');
     }
 
@@ -48,7 +49,7 @@ class MetarTest extends \PHPUnit_Framework_TestCase
     public function testSetInvalidProvider()
     {
         $metar = new Metar('EGSS');
-        $this->setExpectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
+        $this->expectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
         $metar->setProvider('An_Invalid_Provider');
     }
 
