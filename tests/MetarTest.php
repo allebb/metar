@@ -30,7 +30,7 @@ class MetarTest extends TestCase
      */
     public function testSetInvalidIcao()
     {
-        $this->expectedException('InvalidArgumentException', 'ICAO code does not appear to be a valid format');
+        $this->expectException('InvalidArgumentException', 'ICAO code does not appear to be a valid format');
         $metar = new Metar('EGSSA');
     }
 
@@ -49,7 +49,7 @@ class MetarTest extends TestCase
     public function testSetInvalidProvider()
     {
         $metar = new Metar('EGSS');
-        $this->expectedException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
+        $this->expectException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
         $metar->setProvider('An_Invalid_Provider');
     }
 

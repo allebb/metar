@@ -58,7 +58,7 @@ class MetarHttpClientTest extends TestCase
         ]);
         $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
-        $this->expectedException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response');
+        $this->expectException('Exception', 'Client error: `GET http://metar.vatsim.net/metar.php?id=EGSSA` resulted in a `404 Not Found` response');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSSA'));
     }
 
@@ -72,7 +72,7 @@ class MetarHttpClientTest extends TestCase
         ]);
         $this->handler = HandlerStack::create($mock);
         $client = new Ballen\Metar\Helpers\MetarHTTPClient(['handler' => $this->handler]);
-        $this->expectedException('Exception', 'Server error: `GET http://metar.vatsim.net/metar.php?id=EGSS` resulted in a `502 Bad Gateway`');
+        $this->expectException('Exception', 'Server error: `GET http://metar.vatsim.net/metar.php?id=EGSS` resulted in a `502 Bad Gateway`');
         $client->getMetarAPIResponse(sprintf(self::VATSIM_SERVICE_URL, 'EGSS'));
     }
 }
