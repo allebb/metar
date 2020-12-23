@@ -21,6 +21,8 @@ Requirements
 
 This library is unit tested against PHP 7.3, 7.4 and 8.0!
 
+If you need to use an older version of PHP, you should instead install the 2.x version of this library (see below for details).
+
 License
 -------
 
@@ -33,6 +35,12 @@ The recommended way of installing this library is via. [Composer](http://getcomp
 
 ```shell
 composer require ballen/metar
+```
+
+*If you need to use an older version of PHP, version 2.x.x supports PHP 5.6, 7.0, 7.1 and 7.2, you can install this version using Composer with this command instead:**
+
+```shell
+composer require ballen/metar ^2.0
 ```
 
 Example usage

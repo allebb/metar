@@ -10,7 +10,7 @@ $egss = new Metar('EGSS');
 echo sprintf('The METAR report for Stanstead (EGSS) is: %s', $egss);
 
 /**
- * Alternatively, Flight simulation enthusiates may wish to retrieve the current VATSIM reports,
+ * Alternatively, Flight simulation enthusiasts may wish to retrieve the current VATSIM reports,
  * this can be achieved by 
  */
 $leib = new Metar('LEIB');
