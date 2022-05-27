@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Ballen\Metar\Providers;
 
 /**
@@ -15,8 +18,7 @@ namespace Ballen\Metar\Providers;
  */
 interface MetarProviderInterface
 {
+    public function __construct(string $icao);
 
-    function __construct($icao);
-
-    function __toString();
+    public function __toString();
 }

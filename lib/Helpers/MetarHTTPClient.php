@@ -1,8 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Ballen\Metar\Helpers;
 
 use GuzzleHttp\Client as HttpClient;
 use \Exception;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * Metar
@@ -29,7 +33,7 @@ class MetarHTTPClient
      * HTTP Client
      * @param array $config Optional Guzzle configuration.
      */
-    public function __construct($config = [])
+    public function __construct(array $config = [])
     {
         $this->guzzleConf = $config;
     }
@@ -37,9 +41,9 @@ class MetarHTTPClient
     /**
      * Make a HTTP request and retrieve the body.
      * @param string $url The URL to request
-     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getMetarAPIResponse($url)
+    public function getMetarAPIResponse(string $url): string
     {
         $client = new HttpClient($this->guzzleConf);
         $response = $client->get($url);

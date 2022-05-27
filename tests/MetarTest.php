@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 use Ballen\Metar\Metar;
 use PHPUnit\Framework\TestCase;
 
