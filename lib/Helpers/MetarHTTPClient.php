@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Ballen\Metar\Helpers;
 
 use GuzzleHttp\Client as HttpClient;
-use \Exception;
-use Psr\Http\Message\StreamInterface;
 
 /**
  * Metar
