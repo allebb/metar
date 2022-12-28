@@ -19,7 +19,7 @@ Requirements
 * PHP >= 7.3.0
 * cURL
 
-This library is unit tested against PHP 7.3, 7.4, 8.0 and 8.1!
+This library is unit tested against PHP 7.3, 7.4, 8.0, 8.1 and 8.2!
 
 If you need to use an older version of PHP, you should instead install the 2.x version of this library (see below for details).
 
@@ -72,7 +72,7 @@ Tests and coverage
 
 This library is fully unit tested using [PHPUnit](https://phpunit.de/).
 
-I use [GitHub Actions](https://github.com/) for continuous integration, which triggers tests for PHP 7.3, 7.4, 8.0 and 8.1 every time a commit is pushed.
+I use [GitHub Actions](https://github.com/) for continuous integration, which triggers tests for PHP 7.3, 7.4, 8.0, 8.1 and 8.2 every time a commit is pushed.
 
 If you wish to run the tests yourself you should run the following:
 
@@ -84,7 +84,7 @@ composer install
 ./vendor/bin/phpunit
 ```
 
-Code coverage can also be ran and a report generated (this does require XDebug to be installed)...
+Code coverage can also be run and a report generated (this does require XDebug to be installed)...
 
 ```shell
 ./vendor/bin/phpunit --coverage-html ./report

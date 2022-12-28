@@ -23,6 +23,7 @@ class MetarTest extends TestCase
     public function testSetValidIcao()
     {
         $metar = new Metar('EGSS');
+        $this->assertTrue(true); // Assert that NO exception was previously thrown (eg. the ICAO code was valid) in this test case!
     }
 
     /**
@@ -41,6 +42,7 @@ class MetarTest extends TestCase
     {
         $metar = new Metar('EGSS');
         $metar->setProvider(\Ballen\Metar\Providers\Noaa::class);
+        $this->assertTrue(true); // Assert that NO exception was previously thrown (eg. the ICAO code was valid) in this test case!
     }
 
     /**
