@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Ballen\Metar\Providers;
 
 /**
@@ -21,23 +24,21 @@ use \Ballen\Metar\Helpers\MetarHTTPClient;
  */
 class Ivao extends MetarHTTPClient implements MetarProviderInterface
 {
-
     private $serviceUrl = 'http://wx.ivao.aero/metar.php/?id={{_ICAO_}}';
     private $icao;
 
-    public function __construct($icao)
+    public function __construct(string $icao)
     {
         $this->icao = $icao;
     }
 
-    private function getMetarDataString()
+    /**  @throws \GuzzleHttp\Exception\GuzzleException */
+    private function getMetarDataString(): string
     {
-
-        $data = $this->getMetarAPIResponse(str_replace('{{_ICAO_}}', $this->icao, $this->serviceUrl));
-        return $data;
+        return $this->getMetarAPIResponse(str_replace('{{_ICAO_}}', $this->icao, $this->serviceUrl));
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->getMetarDataString();
     }

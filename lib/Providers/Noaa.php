@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Ballen\Metar\Providers;
 
 /**
@@ -25,12 +28,13 @@ class Noaa extends MetarHTTPClient implements MetarProviderInterface
     private $serviceUrl = 'http://tgftp.nws.noaa.gov/data/observations/metar/stations/{{_ICAO_}}.TXT';
     private $icao;
 
-    public function __construct($icao)
+    public function __construct(string $icao)
     {
         $this->icao = $icao;
     }
 
-    private function getMetarDataString()
+    /** @throws \GuzzleHttp\Exception\GuzzleException */
+    private function getMetarDataString(): string
     {
 
         $data = $this->getMetarAPIResponse(str_replace('{{_ICAO_}}', $this->icao, $this->serviceUrl));

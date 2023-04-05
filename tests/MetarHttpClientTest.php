@@ -1,5 +1,8 @@
 <?php
-use GuzzleHttp\Handler\MockHandler;
+
+declare(strict_types=1);
+
+use G0uzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -38,7 +41,7 @@ class MetarHttpClientTest extends TestCase
     /**
      * Test recieving a METAR report.
      */
-    public function testDownloadReport()
+    public function testDownloadReport(): void
     {
         $mock = new MockHandler([
             new Response(200, [], self::EXAMPLE_METAR_REPORT),
@@ -51,7 +54,7 @@ class MetarHttpClientTest extends TestCase
     /**
      * Test recieving an invalid report.
      */
-    public function testInvalidReport()
+    public function testInvalidReport(): void
     {
         $mock = new MockHandler([
             new Response(404),
@@ -65,7 +68,7 @@ class MetarHttpClientTest extends TestCase
     /**
      * Test recieving an unprocessable response (eg. a 502 response).
      */
-    public function testServiceUnavailableRepsonse()
+    public function testServiceUnavailableRepsonse(): void
     {
         $mock = new MockHandler([
             new Response(502),

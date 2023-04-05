@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Ballen\Metar;
 
 /**
@@ -19,7 +22,7 @@ class Metar
     /**
      * Stores the default namespace for loading new METAR providers from.
      */
-    const DEFAULT_PROVIDER = 'Ballen\Metar\Providers\Noaa';
+    public const DEFAULT_PROVIDER = 'Ballen\Metar\Providers\Noaa';
 
     /**
      * Stores the requested airfield/port ICAO code.
@@ -29,7 +32,7 @@ class Metar
 
     /**
      * The METAR string retrieved from the web service.
-     * @var string The raw METAR string retrieved from the web service. 
+     * @var string The raw METAR string retrieved from the web service.
      */
     private $metar;
 
@@ -43,7 +46,7 @@ class Metar
      * Initiates a new METAR object.
      * @param string $icao The airfeild/airport ICAO code.
      */
-    public function __construct($icao)
+    public function __construct(string $icao)
     {
 
         // We force the format of the ICAO code to be upper case!
@@ -73,9 +76,9 @@ class Metar
      * @param string $icao ICAO code, eg. EGSS
      * @throws \InvalidArgumentException
      */
-    private function validateIcao($icao)
+    private function validateIcao(string $icao): void
     {
-        if (strlen($icao) != 4) {
+        if (strlen($icao) !== 4) {
             throw new \InvalidArgumentException('ICAO code does not appear to be a valid format');
         }
     }
@@ -84,7 +87,7 @@ class Metar
      * Changes the default 'NOAA' METAR service provider to another one eg. 'VATSIM'.
      * @param string $provider METAR Provider Class/File name.
      */
-    public function setProvider($provider = self::DEFAULT_PROVIDER)
+    public function setProvider(string $provider = self::DEFAULT_PROVIDER): self
     {
         if (!class_exists($provider)) {
             throw new \InvalidArgumentException('The service provider your specified does not exist in the namespace \'' . $provider . '\'');
