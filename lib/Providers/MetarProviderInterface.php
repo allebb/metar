@@ -21,4 +21,6 @@ interface MetarProviderInterface
     public function __construct(string $icao);
 
     public function __toString();
+
+    public function raw() : string;
 }

@@ -21,7 +21,7 @@ class MetarTest extends TestCase
 {
 
     /**
-     * Test requesting of a valid ICAO code (does not thrown an invalid formation exception)
+     * Test requesting of a valid ICAO code (does not throw an invalid formation exception)
      */
     public function testSetValidIcao()
     {
@@ -34,7 +34,8 @@ class MetarTest extends TestCase
      */
     public function testSetInvalidIcao()
     {
-        $this->expectException('InvalidArgumentException', 'ICAO code does not appear to be a valid format');
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('ICAO code does not appear to be a valid format');
         $metar = new Metar('EGSSA');
     }
 
@@ -54,7 +55,8 @@ class MetarTest extends TestCase
     public function testSetInvalidProvider()
     {
         $metar = new Metar('EGSS');
-        $this->expectException('InvalidArgumentException', 'The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('The service provider your specified does not exist in the namespace \'An_Invalid_Provider\'');
         $metar->setProvider('An_Invalid_Provider');
     }
 
@@ -64,7 +66,7 @@ class MetarTest extends TestCase
     public function testValidNoaaMetarResponse()
     {
         $metar = new Metar('EGSS');
-        $check_valid_metar = strpos($metar, 'EGSS');
+        $check_valid_metar = strpos((string)$metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }
 
@@ -75,7 +77,7 @@ class MetarTest extends TestCase
     {
         $metar = new Metar('EGSS');
         $metar->setProvider(Ballen\Metar\Providers\Vatsim::class);
-        $check_valid_metar = strpos($metar, 'EGSS');
+        $check_valid_metar = strpos((string)$metar, 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }
 
@@ -86,7 +88,7 @@ class MetarTest extends TestCase
     {
         $metar = new Metar('EGSS');
         $metar->setProvider(Ballen\Metar\Providers\Ivao::class);
-        $check_valid_metar = strpos($metar, 'EGSS');
+        $check_valid_metar = strpos($metar->report()->raw(), 'EGSS');
         $this->assertEquals($check_valid_metar, 0);
     }
 }

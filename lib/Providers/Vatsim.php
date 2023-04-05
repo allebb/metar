@@ -16,6 +16,7 @@ namespace Ballen\Metar\Providers;
  * @link http://www.bobbyallen.me
  *
  */
+
 use \Ballen\Metar\Helpers\MetarHTTPClient;
 
 /**
@@ -43,5 +44,10 @@ class Vatsim extends MetarHTTPClient implements MetarProviderInterface
     public function __toString()
     {
         return $this->getMetarDataString();
+    }
+
+    public function raw(): string
+    {
+        return $this->__toString();
     }
 }

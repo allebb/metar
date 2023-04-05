@@ -16,6 +16,7 @@ namespace Ballen\Metar\Providers;
  * @link http://www.bobbyallen.me
  *
  */
+
 use \Ballen\Metar\Helpers\MetarHTTPClient;
 
 /**
@@ -39,7 +40,7 @@ class Noaa extends MetarHTTPClient implements MetarProviderInterface
 
         $data = $this->getMetarAPIResponse(str_replace('{{_ICAO_}}', $this->icao, $this->serviceUrl));
 
-        // The NOAA web service provides a human readable timestamp of when the report was last generated but we don't care about that so we'll jump to the next line (the actual METAR string)
+        // The NOAA web service provides a human-readable timestamp of when the report was last generated but we don't care about that so we'll jump to the next line (the actual METAR string)
         $lines = explode($this->icao, $data);
         return trim($this->icao . $lines[1]);
     }
@@ -47,5 +48,10 @@ class Noaa extends MetarHTTPClient implements MetarProviderInterface
     public function __toString()
     {
         return $this->getMetarDataString();
+    }
+
+    public function raw(): string
+    {
+        return $this->__toString();
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ballen\Metar;
 
+use Ballen\Metar\Providers\MetarProviderInterface;
+
 /**
  * Metar
  *
@@ -55,7 +57,7 @@ class Metar
         // Validate the ICAO code, just check some standard formatting stuff really!
         $this->validateIcao($this->icao);
 
-        // Set a default provider, can be overrideen with 'setProvider()' function.
+        // Set a default provider, can be overridden with 'setProvider()' function.
         $this->setProvider();
     }
 
@@ -68,11 +70,11 @@ class Metar
         // We'll set the object 'metar' property to the station metar data as well as return the string so
         // that in future we can extend further and use the METAR string in other parts of our class after it has
         // been retrieved!
-        return $this->metar = (string) new $this->metarProvider($this->icao);
+        return $this->metar = (string)new $this->metarProvider($this->icao);
     }
 
     /**
-     * Validates the ICAO code to ensure it's format is valid.
+     * Validates the ICAO code to ensure its format is valid.
      * @param string $icao ICAO code, eg. EGSS
      * @throws \InvalidArgumentException
      */
@@ -86,12 +88,23 @@ class Metar
     /**
      * Changes the default 'NOAA' METAR service provider to another one eg. 'VATSIM'.
      * @param string $provider METAR Provider Class/File name.
+     * @return void
      */
-    public function setProvider(string $provider = self::DEFAULT_PROVIDER): self
+    public function setProvider(string $provider = self::DEFAULT_PROVIDER): void
     {
         if (!class_exists($provider)) {
             throw new \InvalidArgumentException('The service provider your specified does not exist in the namespace \'' . $provider . '\'');
         }
         $this->metarProvider = $provider;
     }
+
+    /**
+     * Returns the METAR report (provider) object.
+     * @return MetarProviderInterface
+     */
+    public function report(): MetarProviderInterface
+    {
+        return new $this->metarProvider($this->icao);
+    }
+
 }

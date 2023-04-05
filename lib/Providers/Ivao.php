@@ -42,4 +42,9 @@ class Ivao extends MetarHTTPClient implements MetarProviderInterface
     {
         return $this->getMetarDataString();
     }
+
+    public function raw(): string
+    {
+        return $this->__toString();
+    }
 }
